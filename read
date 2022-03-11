@@ -18,6 +18,8 @@ sudo ufw default allow outgoing
 Enabling SSH Connections
 sudo ufw allow ssh
 sudo ufw allow 22
+sudo ufw deny 22/tcp
+
 
 
 However, if we have configured the SSH daemon to use a different port like 2022 or 1022, then we can use the below command –
