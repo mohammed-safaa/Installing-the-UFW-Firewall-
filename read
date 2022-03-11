@@ -1,0 +1,108 @@
+Installing the UFW (Firewall) on ubuntu
+
+Installing 
+sudo apt-get install ufw -y
+
+Enabling the UFW (Firewall)
+sudo ufw enable
+
+
+Disabling the UFW (Firewall)
+sudo ufw disable
+
+
+Enabling the Default Policies
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+
+Enabling SSH Connections
+sudo ufw allow ssh
+sudo ufw allow 22
+
+
+However, if we have configured the SSH daemon to use a different port like 2022 or 1022, then we can use the below command –
+sudo ufw allow 1022
+
+
+Checking the UFW (Firewall) Status
+
+sudo ufw status
+
+Status: active
+To             Action          From
+--             ------          ----
+22             ALLOW          Anywhere
+2222           DENY           Anywhere
+1022           ALLOW          Anywhere
+22 (v6)        ALLOW          Anywhere (v6)
+2222 (v6)      DENY           Anywhere (v6)
+1022 (v6)      ALLOW          Anywhere (v6)
+
+Enabling the UFW for regular port like (HTTP, HTTPS & FTP)
+sudo ufw allow 80
+sudo ufw allow http
+sudo ufw allow https
+sudo ufw allow ftp
+
+Enabling to Allow Specific Range of Ports
+sudo ufw allow 500:800/tcp
+
+Enable to Allow specific IP Addresses
+sudo ufw allow from 192.168.100.1
+sudo ufw allow from 192.168.100.1 to any port 8080
+sudo ufw allow from 192.168.0.0/24
+
+Deny the Connections or Rules
+sudo ufw deny http
+sudo ufw deny from 192.168.2.1
+
+Deleting the Rules
+sudo ufw delete allow http
+
+Rules Number
+
+sudo ufw status numbered
+
+Status: active
+To                      Action             From
+--                      ------             ----
+[ 1] 2222               DENY IN            Anywhere
+[ 2] 1022               ALLOW IN           Anywhere
+[ 3] 443                ALLOW IN           Anywhere
+[ 4] 21/tcp             ALLOW IN           Anywhere
+[ 5] 500:800/tcp        ALLOW IN           Anywhere
+[ 6] Anywhere           ALLOW IN           192.168.100.1
+[ 7] 8080               ALLOW IN           192.168.100.1
+[ 8] Anywhere           ALLOW IN           192.168.0.0/24
+[ 9] Anywhere           DENY IN            192.168.2.1
+[10] 2222 (v6)          DENY IN            Anywhere (v6)
+[11] 1022 (v6)          ALLOW IN           Anywhere (v6)
+[12] 443 (v6)           ALLOW IN           Anywhere (v6)
+[13] 21/tcp (v6)        ALLOW IN           Anywhere (v6)
+[14] 500:800/tcp (v6)   ALLOW IN           Anywhere (v6)
+
+
+If we want to delete the rule 14, then we can use the below command to delete the rules with the below command.
+
+sudo ufw delete 14
+
+Deleting:
+allow 500:800/tcp
+Proceed with operation (y|n)? y
+Rule deleted (v6)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
